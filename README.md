@@ -1,4 +1,3 @@
-
 # Clients API
 
 REST API for user authentication, product catalog, and order management.
@@ -12,6 +11,7 @@ REST API for user authentication, product catalog, and order management.
 - Pydantic
 - JWT authentication
 - Pytest
+- HTTPX
 
 ## Features
 
@@ -24,6 +24,7 @@ REST API for user authentication, product catalog, and order management.
 - Role-based access control (member/admin)
 - Input validation
 - Automated API tests
+- API demonstration script
 
 ## Project Structure
 
@@ -42,6 +43,7 @@ clients_api/
 │   ├── test_orders.py
 │   └── test_quality.py
 ├── .gitignore
+├── demo.py
 ├── pytest.ini
 ├── requirements.txt
 ├── requirements-dev.txt
@@ -59,6 +61,7 @@ SECRET_KEY=YOUR_SECRET_KEY
 ```
 
 Use a separate PostgreSQL database for testing.
+
 Never commit `.env` or expose secret values.
 
 ## Installation
@@ -79,7 +82,7 @@ pip install -r requirements-dev.txt
 ## Run the API
 
 ```powershell
-uvicorn app.main:app --reload
+fastapi dev app/main.py
 ```
 
 API documentation:
@@ -109,6 +112,38 @@ The API uses JWT Bearer tokens.
 - Members can view their own orders and cancel them.
 - Administrators can access all orders and manage order statuses.
 - Only administrators can delete orders.
+
+## API Demo
+
+The project includes `demo.py`, a demonstration script that tests the main API workflow using HTTPX.
+
+Start the API server first:
+
+```powershell
+fastapi dev app/main.py
+```
+
+Open a separate terminal and run:
+
+```powershell
+python demo.py
+```
+
+The script demonstrates:
+
+- User registration
+- Authentication and JWT token generation
+- Access to the current user profile
+- Retrieving products
+- Creating an order
+- Retrieving the user's orders
+- Retrieving a specific order
+
+Expected final message:
+
+```text
+DEMO COMPLETED SUCCESSFULLY
+```
 
 ## Run Tests
 

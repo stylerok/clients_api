@@ -24,15 +24,15 @@ TestSessionLocal = sessionmaker(
 
 @pytest.fixture
 def db_session():
-    # Create fresh tables for every test
     Base.metadata.create_all(bind=test_engine)
 
     session = TestSessionLocal()
 
-    yield session
-
-    session.close()
-    Base.metadata.drop_all(bind=test_engine)
+    try:
+        yield session
+    finally:
+        session.close()
+        Base.metadata.drop_all(bind=test_engine)
 
 
 @pytest.fixture

@@ -55,8 +55,8 @@ clients_api/
 Create a `.env` file in the project root:
 
 ```env
-DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/DATABASE_NAME
-TEST_DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/clients_test
+DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@localhost:5432/DATABASE_NAME
+TEST_DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@localhost:5432/clients_test
 SECRET_KEY=YOUR_SECRET_KEY
 ```
 
@@ -147,6 +147,10 @@ DEMO COMPLETED SUCCESSFULLY
 
 ## Run Tests
 
+- The test database must exist before running tests.
+- Tables are created automatically before each test and dropped afterward.
+- Never use the main application database as TEST_DATABASE_URL.
+
 ```powershell
 pytest -v
 ```
@@ -155,4 +159,4 @@ Tests use the separate `TEST_DATABASE_URL` database.
 
 ## Test Results
 
-47 automated tests passed.
+47 passed in 19.82s.

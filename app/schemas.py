@@ -19,7 +19,6 @@ class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8, max_length=72)
     full_name: str = Field(min_length=1, max_length=200)
-    phone_number: str | None = None
 
 
 class UserOut(BaseModel):
@@ -30,7 +29,6 @@ class UserOut(BaseModel):
     full_name: str
     role: str
     created_at: datetime
-    phone_number: str | None
 
 
 class Token(BaseModel):
